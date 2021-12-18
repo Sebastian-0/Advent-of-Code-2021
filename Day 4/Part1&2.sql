@@ -1,3 +1,13 @@
+
+-- Run with:
+-- docker run --rm -v "$(pwd)":/aoc -w /aoc --name postgres -e POSTGRES_PASSWORD=cake123 postgres
+-- docker exec postgres psql -U postgres -f "Part1&2.sql"
+
+-- Good resources:
+-- - https://www.postgresql.org/docs/current/sql.html
+-- - https://www.postgresql.org/docs/current/plpgsql.html
+-- - https://www.postgresql.org/docs/current/sql-commands.html
+
 CREATE OR REPLACE FUNCTION create_tables()
 RETURNS VOID AS $$
 BEGIN
@@ -147,7 +157,3 @@ SELECT create_tables();
 SELECT simulate();
 
 SELECT destroy_tables();
-
--- Run with:
--- docker run --rm -v "$(pwd)":/aoc -w /aoc --name postgres -e POSTGRES_PASSWORD=cake123 postgres
--- docker exec postgres psql -U postgres -f "Part1&2.sql"
