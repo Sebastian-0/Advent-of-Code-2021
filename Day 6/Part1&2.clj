@@ -1,4 +1,16 @@
 
+;; Run with:
+;; docker run --rm -i -v "$(pwd)":/aoc -w /aoc clojure clj Part1&2.clj
+
+;; REPL:
+;; docker run --rm -i -v "$(pwd)":/aoc -w /aoc clojure clj -r
+
+;; Good resources
+;; - https://clojure.org/guides/learn/syntax
+;; - https://clojuredocs.org/clojure.core
+;; - https://github.com/bbatsov/clojure-style-guide
+
+
 ;;
 ;; Input
 ;;
@@ -84,10 +96,3 @@
 
 (println "")
 (println "After 256 days:" (sum initial))
-
-
-;; Run with:
-;; docker run --rm -i -v "$(pwd)":/aoc -w /aoc clojure clj Part1&2.clj
-
-;; repl:
-;; docker run --rm -i -v "$(pwd)":/aoc -w /aoc clojure clj -r

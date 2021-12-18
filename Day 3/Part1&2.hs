@@ -1,4 +1,7 @@
 
+-- Run with:
+-- docker run --rm -i -v "$(pwd)":/haskell -w /haskell haskell bash -c "ghc -o a.out 'Part1&2.hs' && ./a.out"
+
 import Data.Char
 
 -- Common utilities
@@ -75,6 +78,3 @@ main = do
     let values = stringsToInts $ lines inp
     putStrLn $ "gamma * epsilon = " ++ show (partOne values)
     putStrLn $ "oxygen * CO2 = " ++ show (partTwo values)
-
--- Run with:
--- docker run --rm -i -v "$(pwd)":/haskell -w /haskell haskell bash -c "ghc -o a.out 'Part 1 & 2.hs' && ./a.out"
