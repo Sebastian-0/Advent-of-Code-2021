@@ -1,4 +1,5 @@
 
+# Run with:
 # docker build -t r-lang .
 # docker run --rm -i -v "$(pwd)":/aoc -w /aoc r-lang Rscript 'Part1&2.R'
 
