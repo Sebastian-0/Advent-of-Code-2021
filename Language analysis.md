@@ -103,3 +103,11 @@ Why did I ever use this language? I didn't know about delayed execution previous
 This language was very easy to get into with great resources available. It was intuitive and similar to many other languages. Lua is very simple in its design which has both upsides and downsides, for instance the lack of -=/+=/etc... was a bit annoying, but on the other hand there is less syntax and libraries you need to learn.
 
 Apart from day 1 in Excel this was the fastest solution to write by a wide margin, not much more than 1 hour from start to finish including learning the language.
+
+## Day 12 - PHP
+- **Language type:** Procedural, Object-oriented
+- **Typical use cases:** Web page development
+
+PHP was pretty nice to code in, I had no major hurdles when building the solution. There are some annoying things, like having to type `$` before every variable, and that it uses type juggling like Javascript, but other than that I feel like this is decent language.
+
+A lot of people seem to dislike PHP but the reasons why are not apparent when using it for AoC, maybe it would be more obvious during web development.
