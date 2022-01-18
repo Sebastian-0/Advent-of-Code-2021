@@ -111,3 +111,17 @@ Apart from day 1 in Excel this was the fastest solution to write by a wide margi
 PHP was pretty nice to code in, I had no major hurdles when building the solution. There are some annoying things, like having to type `$` before every variable, and that it uses type juggling like Javascript, but other than that I feel like this is decent language.
 
 A lot of people seem to dislike PHP but the reasons why are not apparent when using it for AoC, maybe it would be more obvious during web development.
+
+## Day 13 - Ada
+- **Language type:** Procedural, Object-oriented
+- **Typical use cases:** Systems with high reliability requirements
+
+Ada was very annoying to work in, partly because of the strict type system but mostly because there are so many modern features lacking, and you have to write *so much* boilerplate code at times. Things I had problems with:
+
+- Having both the attributes `A'B` and functions `A.B` makes the language confusing.
+- Lacking basic features such as `+=` and loop continues, when googling people suggested using gotos and that's just tragic...
+- Just creating a list and sorting it creates so much verbose boilerplate code...
+- Array indices can start with 0, 1, 11 or whatever you want. Ada argues this is powerfull but in my opinion it will most likely cause obscure bugs which is particularly bad for a language intended for high reliability.
+- The lack of a proper API reference is painful, there is one at adaic but apart from that you will spend a lot of time googling. The only place where I managed to find a list of all attributes was at Wikibooks?!
+
+I can kind of, almost, see the point in using this language for some tasks but why not use something else like Rust?
