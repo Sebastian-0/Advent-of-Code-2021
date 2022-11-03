@@ -125,3 +125,13 @@ Ada was very annoying to work in, partly because of the strict type system but m
 - The lack of a proper API reference is painful, there is one at adaic but apart from that you will spend a lot of time googling. The only place where I managed to find a list of all attributes was at Wikibooks?!
 
 I can kind of, almost, see the point in using this language for some tasks but why not use something else like Rust?
+
+## Day 14 - Perl
+- **Language type:** Procedural, Imperative
+- **Typical use cases:** Network programming, Scripting for system administration
+
+Perl was an interesting language to work with, once you got the hang of it it was pretty straightforward to use. You could feel some of its limitations, like it being hard to pass multiple lists/hashes in/out of subroutines, but it was possible to work around it.
+
+In general it was a bit bulky (and likely error prone) to handle function arguments, it would be better if that was more statically typed I think. The syntax for if statements was also a bit strange... Like `==` only working for integers so you need `eq` for strings, etc...
+
+The use of the default variable `$_` was an interesting concept, however I don't know if it really is a good idea...
