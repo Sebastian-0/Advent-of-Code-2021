@@ -135,3 +135,11 @@ Perl was an interesting language to work with, once you got the hang of it it wa
 In general it was a bit bulky (and likely error prone) to handle function arguments, it would be better if that was more statically typed I think. The syntax for if statements was also a bit strange... Like `==` only working for integers so you need `eq` for strings, etc...
 
 The use of the default variable `$_` was an interesting concept, however I don't know if it really is a good idea...
+
+## Day 15 - Ruby
+- **Language type:** Functional, Imperative, Object-oriented
+- **Typical use cases:** Web applications
+
+Ruby was nice, it is very similar to Python but with some other influences as well, like Perl. I have nothing major to complain about other than that the documentation was pretty bad and hard to find. The main Ruby website sucks big time!
+
+There were some quirks that I didn't quite get, like why you had to add a `&` when you send lambdas to functions. I also think the language gets in the way of itself when it strictly enforces encapsulation by default, and you need to add getters/setters (or use `attr_accessor`) even for simple data structs.
