@@ -143,3 +143,19 @@ The use of the default variable `$_` was an interesting concept, however I don't
 Ruby was nice, it is very similar to Python but with some other influences as well, like Perl. I have nothing major to complain about other than that the documentation was pretty bad and hard to find. The main Ruby website sucks big time!
 
 There were some quirks that I didn't quite get, like why you had to add a `&` when you send lambdas to functions. I also think the language gets in the way of itself when it strictly enforces encapsulation by default, and you need to add getters/setters (or use `attr_accessor`) even for simple data structs.
+
+## Day 16 - Go
+- **Language type:** Concurrent, Imperative, Object-oriented
+- **Typical use cases:** Distributed systems
+
+This feels like a language that was created for a specific use case rather than to be useful in general. There are many things here that are strange/annoying/messy/unconsistent/etc... Some design decisions also don't feel like they were properly thought through, like how they motivated why the should write variable name and type without a separator based on some obscure edge cases in C.
+
+Things I didn't like:
+
+- You must use all variables, otherwise we get compile errors. This was really annoying during development and feels like something a "Clean code" guru just HAD to include in the language to force everyone to follow his/her workflow.
+- Type definitions are weird and are hard to read because there are no separators
+- Weird language constructs with little benefit, like named return values. They even say in the docs that you probably shouldn't use it.
+- Public-ness of functions is based on name casing. This feels like how old Fortran derived variable types from the first letter in the name.
+- No proper way to handle errors. You seriously must litter your code with if-stmts everywhere!
+
+In general I feel much more inclined to be negative towards this language after I started learning Rust, which feels better in almost every single way.
