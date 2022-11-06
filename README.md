@@ -85,7 +85,7 @@ I new this language pretty well to begin with. It was interesting to learn new t
 
 What an annoying piece of work.
 
-Lacks fundamental features like OR/AND in if statements. Strange behaviour in multiple cases like when reading variables inside if-statements where you can't modify them without using delayed execution.
+Lacks fundamental features like OR/AND in if statements. Strange behaviour in multiple cases like when reading variables inside if-statements where you can't modify them without using delayed expansion.
 
 No support for sorting so a very hacky workaround is needed:
 - Must abuse array index sorting
@@ -94,7 +94,7 @@ No support for sorting so a very hacky workaround is needed:
 
 No way to handle integer overflow.
 
-Why did I ever use this language? I didn't know about delayed execution previously either, a wonder I got anything to work.
+Why did I ever use this language? I didn't know about delayed expansion previously either, a wonder I got anything to work.
 
 ## Day 11 - Lua
 - **Language type:** Procedural, Object-oriented
