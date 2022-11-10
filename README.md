@@ -167,3 +167,15 @@ In general I feel much more inclined to be negative towards this language after 
 Groovy is nice most of the time. It's like Java but with easier/simplified syntax. The only real hurdle I encountered was the error messages that were a bit cryptic, but other than that it worked fine.
 
 Before writing this solution I had a very negative image of Groovy based on my experiences from Gradle and Jenkins. That image mostly stemmed from those platforms being poorly and messily documented at times, leading to many frustrating hours trying to fix seemingly simple errors. Thankfully it seems those problems are limited to those platforms and are not inherent issues in the language itself.
+
+## Day 18 - Dart
+- **Language type:** Object-oriented, Imperative, Functional
+- **Typical use cases:** Mobile apps
+
+Dart is a nice language, if you avoid its gotchas. I found it to be similar to many other languages in syntax which helped, and the documentation and API docs are really good!
+
+I think the idea of explicitly defining variables as "nullable" is a good idea, but it feels like it could be handled way better by the compiler. My code has many places where I need the `!` operator to avoid compile errors where it's logically impossible for the variables to be null... Maybe it's my experience from Rust that makes me expect more.
+
+I found the mix between static/dynamic typing to be confusing. I think it would be better to just stick to one paradigm. I was especially confused by what happens when you declare a variable like `var text;`. Even if you assign a string to it on the next line it still gets the type `dynamic`, which sometimes can cause the code to compile even though it's 100% guaranteed to fail (this happened to me).
+
+A final note that I found interesting is that all numbers seem to be `double` even if you declare them as `int`.
