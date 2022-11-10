@@ -159,3 +159,11 @@ Things I didn't like:
 - No proper way to handle errors. You seriously must litter your code with if-stmts everywhere!
 
 In general I feel much more inclined to be negative towards this language after I started learning Rust, which feels better in almost every single way.
+
+## Day 17 - Groovy
+- **Language type:** Object-oriented, Imperative
+- **Typical use cases:** DSLs e.g. in Gradle and Jenkins
+
+Groovy is nice most of the time. It's like Java but with easier/simplified syntax. The only real hurdle I encountered was the error messages that were a bit cryptic, but other than that it worked fine.
+
+Before writing this solution I had a very negative image of Groovy based on my experiences from Gradle and Jenkins. That image mostly stemmed from those platforms being poorly and messily documented at times, leading to many frustrating hours trying to fix seemingly simple errors. Thankfully it seems those problems are limited to those platforms and are not inherent issues in the language itself.
