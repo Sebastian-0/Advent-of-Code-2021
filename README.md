@@ -179,3 +179,21 @@ I think the idea of explicitly defining variables as "nullable" is a good idea, 
 I found the mix between static/dynamic typing to be confusing. I think it would be better to just stick to one paradigm. I was especially confused by what happens when you declare a variable like `var text;`. Even if you assign a string to it on the next line it still gets the type `dynamic`, which sometimes can cause the code to compile even though it's 100% guaranteed to fail (this happened to me).
 
 A final note that I found interesting is that all numbers seem to be `double` even if you declare them as `int`.
+
+## Day 19 - Javascript
+- **Language type:** Functional, Imperative
+- **Typical use cases:** Web development
+
+When using Javascript I find myself missing Typescript. I expect that this code will be hard to understand when looking at it later because there are no types.
+
+Writing this solution took a lot of time, both because the actual problem was tricky but also because Javascript is so lackluster. There are so many things missing that I'd like to have, but the main problem is the lack of quality-of-life stuff, like checking if a list contains an object.
+
+Obviously you are supposed to run Javascript in a browser, so running it from the console made some things tricky, like reading input from `stdin`. I opted for reading from files instead, I never got console reading to work properly...
+
+Some things I don't like:
+
+- Reading input is hard
+- Missing proper objects/classes
+- Missing array contains/similar
+- Missing convenient sets
+- Tuples would be nice to have
