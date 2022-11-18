@@ -197,3 +197,11 @@ Some things I don't like:
 - Missing array contains/similar
 - Missing convenient sets
 - Tuples would be nice to have
+
+## Day 20 - C#
+- **Language type:** Imperative, Object-Oriented
+- **Typical use cases:** Windows applications, Game development, Web development
+
+C# is a nice language overall, however some more setup is required when building it on Linux vs. Windows. I guess Microsoft still uses a Windows-first approach. Also a bit strange that a `.csproj` file seems to be necessary to get it running in docker, those files are connected to Visual Studio so I had to write one manually.
+
+Nothing more to say really. I don't think I will use this language much at the moment since it still feels very tied to Microsoft and their products.
