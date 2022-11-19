@@ -1,7 +1,6 @@
 
 ! Compile and run with:
-! docker build -t fortran .
-! docker run --rm -i -v "$(pwd)":/aoc -w /aoc fortran bash -c "gfortran 'Part1&2.f90' && ./a.out"
+! docker run --rm -i -v "$(pwd)":/aoc -w /aoc gcc bash -c "gfortran 'Part1&2.f90' && ./a.out"
 
 ! Good resources:
 ! - https://gcc.gnu.org/onlinedocs/gfortran
