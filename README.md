@@ -205,3 +205,9 @@ Some things I don't like:
 C# is a nice language overall, however some more setup is required when building it on Linux vs. Windows. I guess Microsoft still uses a Windows-first approach. Also a bit strange that a `.csproj` file seems to be necessary to get it running in docker, those files are connected to Visual Studio so I had to write one manually.
 
 Nothing more to say really. I don't think I will use this language much at the moment since it still feels very tied to Microsoft and their products.
+
+## Day 21 - C
+- **Language type:** Imperative, Procedural
+- **Typical use cases:** Operating systems, Embedded systems, Application development
+
+I like C, it's simple and clean compared to C++. As long as you don't need advanced datastructures or complicated functions it's fine to use. I decided to use C this day since it seemed like a problem that wouldn't require datastructures/libraries, and indeed it was!
