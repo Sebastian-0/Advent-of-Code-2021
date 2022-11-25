@@ -227,3 +227,13 @@ I will definitely use Rust for other projects! In fact I already am using it.
 Kotlin is alright, it's Java with a twist. I'm not convinced I would use Kotlin over Java, maybe... It's a bit slower to compile but the code is cleaner.
 
 I thought I could leverage data classes in my solution but alas they don't properly support having arrays as members when it comes to auto-generating code (hashCode/equals/copy) so I had to write everything myself anyway...
+
+## Day 24 - C++
+- **Language type:** Imperative, Procedural, Object-Oriented
+- **Typical use cases:** Application development, Game development
+
+I don't like C++, there are too many things that can go wrong, and the compiler doesn't help you at all most of the time! I would prefer Rust when possible, or some other language. I like C more too since it's nice and clean but of course then there are other downsides.
+
+It took a long while to figure out how to define the hash function for my custom key type... Initially I baked everything into a string instead of using a tuple but it was too dirty...
+
+The problem today was actually really hard too! I don't know if I solved this the right way. Essentially I used brute force with a table, but the table can become *very* large (300M+) so it still takes a while to compute.
