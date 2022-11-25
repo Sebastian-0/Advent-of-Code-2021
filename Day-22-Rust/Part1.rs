@@ -1,6 +1,11 @@
 // Run with:
 // docker run --rm -i -v "$(pwd)":/aoc -w /aoc rust bash -c "rustc 'Part1.rs' && ./Part1"
 
+// Good resources:
+// - Rust book: https://doc.rust-lang.org/book/
+// - API docs of STD: https://doc.rust-lang.org/stable/std/index.html
+// - User packages: https://crates.io
+
 use std::io;
 
 fn parse_range(range: &str) -> (i32, i32) {
