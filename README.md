@@ -211,3 +211,11 @@ Nothing more to say really. I don't think I will use this language much at the m
 - **Typical use cases:** Operating systems, Embedded systems, Application development
 
 I like C, it's simple and clean compared to C++. As long as you don't need advanced datastructures or complicated functions it's fine to use. I decided to use C this day since it seemed like a problem that wouldn't require datastructures/libraries, and indeed it was!
+
+## Day 22 - Rust
+- **Language type:** Imperative, Concurrent, Functional
+- **Typical use cases:** Embedded development, Application development
+
+Rust is a really nice language, it has become one of my favourites lately. I will say it takes a while to get into how to write your Rust code the "right way", and there are some advanced concepts that you may run into that can really cause problems when you are new! I think error management in general is a bit immature yet but I expect it to get better over time.
+
+I will definitely use Rust for other projects! In fact I already am using it.
