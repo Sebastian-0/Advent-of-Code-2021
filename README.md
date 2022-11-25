@@ -219,3 +219,11 @@ I like C, it's simple and clean compared to C++. As long as you don't need advan
 Rust is a really nice language, it has become one of my favourites lately. I will say it takes a while to get into how to write your Rust code the "right way", and there are some advanced concepts that you may run into that can really cause problems when you are new! I think error management in general is a bit immature yet but I expect it to get better over time.
 
 I will definitely use Rust for other projects! In fact I already am using it.
+
+## Day 23 - Kotlin
+- **Language type:** Object-Oriented, Imperative, Functional
+- **Typical use cases:** Android development, Competitive programming, Application development
+
+Kotlin is alright, it's Java with a twist. I'm not convinced I would use Kotlin over Java, maybe... It's a bit slower to compile but the code is cleaner.
+
+I thought I could leverage data classes in my solution but alas they don't properly support having arrays as members when it comes to auto-generating code (hashCode/equals/copy) so I had to write everything myself anyway...
