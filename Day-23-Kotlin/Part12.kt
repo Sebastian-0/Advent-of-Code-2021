@@ -10,15 +10,15 @@
 
 import kotlin.math.min
 
-const val DEPTH = 2
+// const val DEPTH = 2
 
-class State {
-    val s = Array(4) { IntArray(DEPTH) }
+class State(depth: Int) {
+    val s = Array(4) { IntArray(depth) }
 
     val hall = IntArray(11)
 
     fun copy(): State {
-        val copy = State()
+        val copy = State(s[0].size)
         s[0].copyInto(copy.s[0]);
         s[1].copyInto(copy.s[1]);
         s[2].copyInto(copy.s[2]);
@@ -32,6 +32,10 @@ class State {
                 s[1].all { v -> v == 2 } &&
                 s[2].all { v -> v == 3 } &&
                 s[3].all { v -> v == 4 }
+    }
+    
+    fun key(): String {
+        return "${hall.joinToString(",")}|${s[0].joinToString(",")}|${s[1].joinToString(",")}|${s[2].joinToString(",")}|${s[3].joinToString(",")}"
     }
 }
 
@@ -48,8 +52,10 @@ fun costFor(type: Int, steps: Int): Int {
 }
 
 val BLOCKED = setOf(2, 4, 6, 8)
-fun tryMoveOut2(state: State, sIdx: Int, idx: Int, start: Int): Int {
+fun tryMoveOut2(state: State, sIdx: Int, idx: Int, start: Int): Pair<Int, MutableList<Pair<State, Int>>> {
     var cost = Int.MAX_VALUE
+    var bestStates = mutableListOf<Pair<State, Int>>()
+    var bestMoveCost = 0
     // Go left
     for (i in start-1 downTo 0) {
         if (i in BLOCKED) {
@@ -60,12 +66,17 @@ fun tryMoveOut2(state: State, sIdx: Int, idx: Int, start: Int): Int {
             break
         }
 
-        var clone = state.copy()
+        val clone = state.copy()
         clone.hall[i] = clone.s[sIdx][idx]
         clone.s[sIdx][idx] = 0
-        val subCost = solve(clone, 1)
+        val (subCost, subStates) = solve(clone, 1)
         if (subCost != Int.MAX_VALUE) {
-            cost = min(cost, subCost + costFor(sIdx+1, idx + start - i + 1))
+            val newCost = subCost + costFor(clone.hall[i], idx + start - i + 1)
+            if (newCost < cost) {
+                cost = newCost
+                bestStates = subStates
+                bestMoveCost = newCost - subCost
+            }
         }
     }
 
@@ -79,18 +90,24 @@ fun tryMoveOut2(state: State, sIdx: Int, idx: Int, start: Int): Int {
             break
         }
 
-        var clone = state.copy()
+        val clone = state.copy()
         clone.hall[i] = clone.s[sIdx][idx]
         clone.s[sIdx][idx] = 0
-        val subCost = solve(clone, 1)
+        val (subCost, subStates) = solve(clone, 1)
         if (subCost != Int.MAX_VALUE) {
-            cost = min(cost, subCost + costFor(sIdx+1, idx + i - start + 1))
+            val newCost = subCost + costFor(clone.hall[i], idx + i - start + 1)
+            if (newCost < cost) {
+                cost = newCost
+                bestStates = subStates
+                bestMoveCost = newCost - subCost
+            }
         }
     }
-    return cost
+    bestStates.add(Pair(state, bestMoveCost))
+    return Pair(cost, bestStates)
 }
 
-fun tryMoveOut(state: State, sIdx: Int, start: Int): Int {
+fun tryMoveOut(state: State, sIdx: Int, start: Int): Pair<Int, MutableList<Pair<State, Int>>> {
     val array = state.s[sIdx]
     val validToMove = array.any { v -> v != sIdx+1 && v != 0 }
     if (validToMove) {
@@ -100,15 +117,17 @@ fun tryMoveOut(state: State, sIdx: Int, start: Int): Int {
             }
         }
     }
-    return Int.MAX_VALUE
+    return Pair(Int.MAX_VALUE, mutableListOf(Pair(state, Int.MAX_VALUE)))
 }
 
-fun tryMoveIn(state: State, sIdx: Int, target: Int): Int {
+fun tryMoveIn(state: State, sIdx: Int, target: Int): Pair<Int, MutableList<Pair<State, Int>>> {
     if (state.s[sIdx][0] != 0) {
-        return Int.MAX_VALUE // Target is already full!
+        return Pair(Int.MAX_VALUE, mutableListOf(Pair(state, Int.MAX_VALUE))) // Target is already full!
     }
 
     var cost = Int.MAX_VALUE
+    var bestStates = mutableListOf<Pair<State, Int>>()
+    var bestMoveCost = 0
     // Move from hallway to the left
     for (i in target-1 downTo 0) {
         // We can only move a space that's occupied
@@ -119,12 +138,17 @@ fun tryMoveIn(state: State, sIdx: Int, target: Int): Int {
                     // Look for first unoccupied space in the side room
                     if (state.s[sIdx][j] == 0) {
                         // Success
-                        var clone = state.copy()
+                        val clone = state.copy()
                         clone.s[sIdx][j] = clone.hall[i]
                         clone.hall[i] = 0
-                        val subCost = solve(clone, 1)
+                        val (subCost, subStates) = solve(clone, 1)
                         if (subCost != Int.MAX_VALUE) {
-                            cost = min(cost, subCost + costFor(sIdx+1, j + target - i + 1))
+                            val newCost = subCost + costFor(sIdx+1, j + target - i + 1)
+                            if (newCost < cost) {
+                                cost = newCost
+                                bestStates = subStates
+                                bestMoveCost = newCost - subCost
+                            }
                         }
                         break
                     }
@@ -147,12 +171,17 @@ fun tryMoveIn(state: State, sIdx: Int, target: Int): Int {
                     // Look for first unoccupied space in the side room
                     if (state.s[sIdx][j] == 0) {
                         // Success
-                        var clone = state.copy()
+                        val clone = state.copy()
                         clone.s[sIdx][j] = clone.hall[i]
                         clone.hall[i] = 0
-                        val subCost = solve(clone, 1)
+                        val (subCost, subStates) = solve(clone, 1)
                         if (subCost != Int.MAX_VALUE) {
-                            cost = min(cost, subCost + costFor(sIdx+1, j + i - target + 1))
+                            val newCost = subCost + costFor(sIdx+1, j + i - target + 1)
+                            if (newCost < cost) {
+                                cost = newCost
+                                bestStates = subStates
+                                bestMoveCost = newCost - subCost
+                            }
                         }
                         break
                     }
@@ -165,7 +194,8 @@ fun tryMoveIn(state: State, sIdx: Int, target: Int): Int {
             break
         }
     }
-    return cost
+    bestStates.add(Pair(state, bestMoveCost))
+    return Pair(cost, bestStates)
 }
 
 fun printState(state: State) {
@@ -180,7 +210,7 @@ fun printState(state: State) {
         }
     }
     print("#\n")
-    for (r in 0..DEPTH-1) {
+    for (r in 0..state.s[0].size-1) {
         if (r == 0) {
             print("##")
         } else {
@@ -203,10 +233,26 @@ fun printState(state: State) {
     println("  #########  ")
 }
 
-fun solve(state: State, d: Int = 0): Int {
+fun minPair(p1: Pair<Int, MutableList<Pair<State, Int>>>, p2: Pair<Int, MutableList<Pair<State, Int>>>): Pair<Int, MutableList<Pair<State, Int>>> {
+    if (p1.first > p2.first) {
+        return p2
+    }
+    return p1
+}
+
+
+val table: HashMap<String, Pair<Int, MutableList<Pair<State, Int>>>> = hashMapOf()
+fun solve(state: State, d: Int = 0): Pair<Int, MutableList<Pair<State, Int>>> {
+    val key = state.key()
+    val entry = table.get(key)
+    if (entry != null) {
+        return entry
+    }
+    
     if (state.isSolved()) {
-//         println("SSSS")
-        return 0
+        val result = Pair(0, mutableListOf(Pair(state, 0)))
+        table.put(key, result)
+        return result
     }
 
     //printState(state)
@@ -214,66 +260,104 @@ fun solve(state: State, d: Int = 0): Int {
 //     if (d != 0)
 //         return 0
 
-    var cost = Int.MAX_VALUE
+    var cost = Pair(Int.MAX_VALUE, mutableListOf<Pair<State, Int>>())
 
     // Try moving to hallway
-    cost = min(cost, tryMoveOut(state, 0, 2))
-    cost = min(cost, tryMoveOut(state, 1, 4))
-    cost = min(cost, tryMoveOut(state, 2, 6))
-    cost = min(cost, tryMoveOut(state, 3, 8))
+    cost = minPair(cost, tryMoveOut(state, 0, 2))
+    cost = minPair(cost, tryMoveOut(state, 1, 4))
+    cost = minPair(cost, tryMoveOut(state, 2, 6))
+    cost = minPair(cost, tryMoveOut(state, 3, 8))
 
     // Try moving to side rooms
-    cost = min(cost, tryMoveIn(state, 0, 2))
-    cost = min(cost, tryMoveIn(state, 1, 4))
-    cost = min(cost, tryMoveIn(state, 2, 6))
-    cost = min(cost, tryMoveIn(state, 3, 8))
-
+    cost = minPair(cost, tryMoveIn(state, 0, 2))
+    cost = minPair(cost, tryMoveIn(state, 1, 4))
+    cost = minPair(cost, tryMoveIn(state, 2, 6))
+    cost = minPair(cost, tryMoveIn(state, 3, 8))
+    
+    table.put(key, cost)
     return cost
 }
 
 fun main() {
     // 0 = empty, 1 = A, 2 = B, 3 = C, 4 = D
-    val initial = State()
+    val initial = State(4)
 
+    // Full part 1
+//     initial.s[0][0] = 2
+//     initial.s[0][1] = 4
+// 
+//     initial.s[1][0] = 2
+//     initial.s[1][1] = 3
+// 
+//     initial.s[2][0] = 3
+//     initial.s[2][1] = 1
+// 
+//     initial.s[3][0] = 4
+//     initial.s[3][1] = 1
+
+    // Ex part 1
+//     initial.s[0][0] = 2
+//     initial.s[0][1] = 1
+//     
+//     initial.s[1][0] = 3
+//     initial.s[1][1] = 4
+//     
+//     initial.s[2][0] = 2
+//     initial.s[2][1] = 3
+//     
+//     initial.s[3][0] = 4
+//     initial.s[3][1] = 1
+    
+    // Full part 2
     initial.s[0][0] = 2
     initial.s[0][1] = 4
+    initial.s[0][2] = 4
+    initial.s[0][3] = 4
 
     initial.s[1][0] = 2
     initial.s[1][1] = 3
+    initial.s[1][2] = 2
+    initial.s[1][3] = 3
 
     initial.s[2][0] = 3
-    initial.s[2][1] = 1
+    initial.s[2][1] = 2
+    initial.s[2][2] = 1
+    initial.s[2][3] = 1
 
     initial.s[3][0] = 4
     initial.s[3][1] = 1
+    initial.s[3][2] = 3
+    initial.s[3][3] = 1
+    
+    // Ex part 2
+//     initial.s[0][0] = 2
+//     initial.s[0][1] = 4
+//     initial.s[0][2] = 4
+//     initial.s[0][3] = 1
+//     
+//     initial.s[1][0] = 3
+//     initial.s[1][1] = 3
+//     initial.s[1][2] = 2
+//     initial.s[1][3] = 4
+//     
+//     initial.s[2][0] = 2
+//     initial.s[2][1] = 2
+//     initial.s[2][2] = 1
+//     initial.s[2][3] = 3
+//     
+//     initial.s[3][0] = 4
+//     initial.s[3][1] = 1
+//     initial.s[3][2] = 3
+//     initial.s[3][3] = 1
 
-//     initial.s1[0] = 2
-//     initial.s1[1] = 4
-//     
-//     initial.s2[0] = 2
-//     initial.s2[1] = 3
-//     
-//     initial.s3[0] = 3
-//     initial.s3[1] = 1
-//     
-//     initial.s4[0] = 4
-//     initial.s4[1] = 1
+    println("Initial key: ${initial.key()}")
 
-//     initial.s1[0] = 1
-//     initial.s1[1] = 1
-//     
-//     initial.s2[0] = 2
-//     initial.s2[1] = 2
-//     
-//     initial.s3[0] = 3
-//     initial.s3[1] = 3
-//     
-//     initial.s4[0] = 4
-//     initial.s4[1] = 4
-
-    println("Solved? ${initial.isSolved()}")
-
-    val cost = solve(initial.copy())
-
+    val (cost, states) = solve(initial.copy())
+    
+    for ((state, moveCost) in states.asReversed()) {
+//         printState(state)
+//         println("Move cost $moveCost")
+    }
+    
     println("Cost: $cost")
 }
