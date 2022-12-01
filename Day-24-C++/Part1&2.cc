@@ -2,8 +2,8 @@
 // docker run --rm -i -v "$(pwd)":/aoc -w /aoc gcc bash -c "g++ 'Part1&2.cc' && ./a.out"
 
 // Good resources:
-// API reference: https://en.cppreference.com/w/
-// StackOverflow, you will need it :)
+// - API reference: https://en.cppreference.com/w/
+// - StackOverflow, you will need it :)
 
 #include <iostream>
 #include <vector>

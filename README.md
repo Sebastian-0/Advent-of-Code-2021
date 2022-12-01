@@ -237,3 +237,13 @@ I don't like C++, there are too many things that can go wrong, and the compiler 
 It took a long while to figure out how to define the hash function for my custom key type... Initially I baked everything into a string instead of using a tuple but it was too dirty...
 
 The problem today was actually really hard too! I don't know if I solved this the right way. Essentially I used brute force with a table, but the table can become *very* large (300M+) so it still takes a while to compute.
+
+## Day 25 - Julia
+- **Language type:** Procedural, Functional
+- **Typical use cases:** Numerical computations, machine learning, statistics
+
+Julia has its pros and cons; it has a syntax similar to python but executes faster. There are some things you need to get used to, like how arrays work (especially for n-dimensional arrays). I don't like when array indices start at 1 because it can cause problems sometimes.
+
+For instance, in my solution I wanted to compute the next index like `next = (idx + delta) % max` which works for 0-indexed arrays, but breaks down for 1-indexed arrays if `idx` happens to be `max` and `delta` is zero. Instead I had to write `next = (idx - 1 + delta) % max + 1` which is clearly less readable.
+
+I think it's fun that you can write `∈`, `√`, etc... instead of `in`, `sqrt`, etc... It looks neat, but in practice I probably would want a macro keyboard to use that.
